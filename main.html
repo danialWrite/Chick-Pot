@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body{
+			background-image: url(../Images/Main1.jpg);
+			background-repeat: repeat-y;
+			background-size: 100%
+		}
+		#main{
+			background-color: rgba(255, 255, 255, 0.5);
+			display: grid;
+			grid-template-columns: 100%;
+			grid-template-rows: 80px 70px 1fr;
+			justify-content: center;
+			border: 10px double lightsalmon;
+			border-radius: 12px;
+		}
+		#menu{
+			grid-row: 1/2;
+			font-size: 40px;
+			font-variant: small-caps;
+			color: /*olive*/black;
+			padding: 10px 5px;
+			justify-self: center;
+		}
+		#day{
+			grid-row: 2/3;
+			font-size: 25px;
+			font-variant: small-caps;
+			color: olive;
+			padding: 10px 5px;
+			justify-self: right;
+		}
+		ul{
+			grid-column: 1/2;
+			grid-row: 3/4;
+			margin: 0px 0px;
+			margin-bottom: 10px;
+			display: grid;
+			grid-template-rows: 1fr;
+			grid-template-columns: 1fr 1fr;
+			justify-content: center;
+			justify-items: center;
+		}
+		li{
+			margin: 10px 0px;
+			font-variant: small-caps;
+			list-style-type: none;
+			color: slategrey;
+		}
+		footer{
+			width: 80%;
+			margin-left: 10%;
+			margin-right: 10%;
+			background-color: rgba(255,255,255, 0.4);
+			height: 100px;
+			position: fixed;
+			bottom: 0;
+			border-color: rgba(255, 255, 255, 0.4);
+			border-style: solid;
+			border-width: 2px;
+			border-radius: 15px;
+			border-top-left-radius: 2px;
+			border-bottom-right-radius: 2px;
+			box-shadow: none;
+			font-family: sans-serif;
+		}
+		#order{
+			text-indent: 10px;
+		}
+		#call{
+			text-indent: 20px;
+		}
+		#visit{
+			text-indent: 20px;
+		}
+		small{
+			float: right;
+		}
+		img{
+			margin: o;
+			/*width: fit-content;*/
+		}
+		#price{
+			float: right;
+			list-style-type: none;
+			color: black;
+		}
+		#hover{
+			grid-row: 1/2;
+			grid-column: 2/3;
+			display: flex;
+			flex-direction: column;
+		}
+		#flex{
+			grid-row: 1/2;
+			grid-column: 1/2;
+		}
+		#input{
+			display: flex;
+			flex-direction: row;
+			justify-self: center;
+			justify-content: center;
+			justify-items: center;
+		}
+		input{
+			font-size: 1em;
+			height: 20px;
+			width: 190px;
+			padding: 10px 10px;
+			margin: 10px 0px;
+		}
+		#order{
+			height: 100px;
+			width: 200px;
+			position: fixed;
+			bottom: 0;
+			right: 0;
+			display: flex;
+			flex-direction: column;
+			background-color: rgba(255, 255, 255, 0.5);
+			align-items: center;
+			justify-content: center;
+		}
+		#none{
+			text-align: center;
+		}
+		#fill{
+		}
+		#info{
+			position: fixed;
+			bottom: 0;
+			display: flex;
+			flex-direction: row;
+			background-color: white;
+			align-items: center;
+		}
+		#rflex{
+			display:flex;
+			flex-direction: column;
+			align-items: flex-end;
+			align-content: flex-end;
+			align-self: flex-end;
+		}
+		#insta,#twitt,#face{
+			height: 30px;
+			width: 30px;
+			margin: 2px 5px;
+		}
+	</style>
+</head>
+<body><div id="input">
+	<input type="text" name="hi" placeholder="Item Not On The Menu" id="input1" ></div>
+<div id="main">
+	<div id="menu">Menu</div>
+	<div id="day">: Sunday</div>
+	<ul>
+		<div id="flex">
+		<li id="item1">Menu Item ###</li>
+		<li id="item2">Menu Item ###</li>
+		<li id="item3">Menu Item ###</li>
+		<li id="item4">Menu Item ###</li>
+		<li id="item5">Menu Item ###</li>
+		<li id="item6">Menu Item ###</li></div>
+		<div id="hover">
+		<img src="#" id="img" >
+		<li id="price"></li></div>
+	</ul>
+</div>
+<div id="info">
+	<div id="itname"></div>
+	<div id="rflex">
+	<img src="#" id="result">
+	<div id="resultprice"></div>
+</div>
+</div>
+
+<div id="order">
+<p id="none">Hover Or Click An Item TO Toggle Details</p>
+</div>
+
+<script>
+
+	input = document.getElementById('input1');
+	var word = '';
+	result = document.getElementById('result');
+	rp = document.getElementById('resultprice');
+	details = document.getElementById('order');
+	itname = document.getElementById('itname');
+
+	image=document.getElementById("img");
+	price=document.getElementById('price');
+
+	item1=document.getElementById('item1');
+	item1.addEventListener('mouseover',Imshow1,false);
+
+	item2=document.getElementById('item2');
+	item2.addEventListener('mouseover',Imshow2,false);
+
+	item3=document.getElementById('item3');
+	item3.addEventListener('mouseover',Imshow3,false);
+
+	item4=document.getElementById('item4');
+	item4.addEventListener('mouseover',Imshow4,false);
+
+	item5=document.getElementById('item5');
+	item5.addEventListener('mouseover',Imshow5,false);
+
+	item6=document.getElementById('item6');
+	item6.addEventListener('mouseover',Imshow6,false);
+
+	input.addEventListener('keypress',key,false);
+
+	function Imshow1(){
+		image.setAttribute('src','../Images/Main.jpg');
+		price.textContent="Rs ####";
+		details.innerHTML="<p id='fill'>To Order <a href='tel:+923015107575'>Call Us</a><br>Or Visit Our Page <br><a href='instagram.com/profile/chick_pot'><img src='instagram.svg' id='insta'></a><a href='instagram.com/profile/chick_pot'><img src='facebook.svg' id='face'></a><a href='instagram.com/profile/chick_pot'><img src='twitter.svg' id='twitt'></a></p>";
+	}
+	function Imshow2(){
+		image.setAttribute('src','../Images/Main1.jpg');
+		price.textContent="Rs ####";
+		
+		details.innerHTML="<p id='fill'>To Order <a href='tel:+923015107575'>Call Us</a><br>Or Visit Our Page <br><a href='instagram.com/profile/chick_pot'><img src='instagram.svg' id='insta'></a><a href='instagram.com/profile/chick_pot'><img src='facebook.svg' id='face'></a><a href='instagram.com/profile/chick_pot'><img src='twitter.svg' id='twitt'></a></p>";
+	}
+	function Imshow3(){
+		image.setAttribute('src','../Images/Main3.jpg');
+		price.textContent="Rs ####";
+		
+		details.innerHTML="<p id='fill'>To Order <a href='tel:+923015107575'>Call Us</a><br>Or Visit Our Page <br><a href='instagram.com/profile/chick_pot'><img src='instagram.svg' id='insta'></a><a href='instagram.com/profile/chick_pot'><img src='facebook.svg' id='face'></a><a href='instagram.com/profile/chick_pot'><img src='twitter.svg' id='twitt'></a></p>";
+	}
+	function Imshow4(){
+		image.setAttribute('src','../Images/Main.jpg');
+		price.textContent="Rs ####";
+		
+		details.innerHTML="<p id='fill'>To Order <a href='tel:+923015107575'>Call Us</a><br>Or Visit Our Page <br><a href='instagram.com/profile/chick_pot'><img src='instagram.svg' id='insta'></a><a href='instagram.com/profile/chick_pot'><img src='facebook.svg' id='face'></a><a href='instagram.com/profile/chick_pot'><img src='twitter.svg' id='twitt'></a></p>";
+	}
+
+	function Imshow5(){
+		image.setAttribute('src','../Images/Main1.jpg');
+		price.textContent="Rs ####";
+		
+		details.innerHTML="<p id='fill'>To Order <a href='tel:+923015107575'>Call Us</a><br>Or Visit Our Page <br><a href='instagram.com/profile/chick_pot'><img src='instagram.svg' id='insta'></a><a href='instagram.com/profile/chick_pot'><img src='facebook.svg' id='face'></a><a href='instagram.com/profile/chick_pot'><img src='twitter.svg' id='twitt'></a></p>";
+	}
+
+	function Imshow6(){
+		image.setAttribute('src','../Images/Main3.jpg');
+		price.textContent="Rs ####";
+		
+		details.innerHTML="<p id='fill'>To Order <a href='tel:+923015107575'>Call Us</a><br>Or Visit Our Page <br><a href='instagram.com/profile/chick_pot'><img src='instagram.svg' id='insta'></a><a href='instagram.com/profile/chick_pot'><img src='facebook.svg' id='face'></a><a href='instagram.com/profile/chick_pot'><img src='twitter.svg' id='twitt'></a></p>";
+	}
+
+	function key(e){
+		var val = input.value;
+		val+=e.key;
+		var bool = true;
+		if(val == "pasta"){
+			result.setAttribute('src','../Images/Main.jpg');
+			rp.textContent="Rs 100";
+			itname.textContent="Pasta";
+			bool = false;
+		}
+		if(val == "lasagne"){
+			result.setAttribute('src','../Images/Main1.jpg');
+			rp.textContent="aaa";
+			itname.textContent="Lasagne";
+			bool = false;
+		}
+		if(val == "cake"){
+			result.setAttribute('src','../Images/Main3.jpg');
+			rp.textContent="aaa";
+			itname.textContent="Cake";
+			bool = false;
+		}
+		if(val == "cupcake"){
+			result.setAttribute('src','../Images/Main.jpg');
+			rp.textContent="aaa";
+			itname.textContent="CupCake";
+			bool = false;
+		}
+		if(val == "fries"){
+			result.setAttribute('src','../Images/Main1.jpg');
+			rp.textContent="aaa";
+			itname.textContent="Fries";
+			bool = false;
+		}
+		if(val == "loaded fries"){
+			result.setAttribute('src','../Images/Main3.jpg');
+			rp.textContent="aaa";
+			itname.textContent="Loaded Fries";
+			bool = false;
+		}
+		if(val == "burger"){
+			result.setAttribute('src','../Images/Main1.jpg');
+			rp.textContent="aaa";
+			itname.textContent="Burger";
+			bool = false;
+		}
+		if(bool){
+			result.setAttribute('src','#');
+			rp.textContent="No Results Found";
+		}
+	}
+</script>
+</body>
+</html>
